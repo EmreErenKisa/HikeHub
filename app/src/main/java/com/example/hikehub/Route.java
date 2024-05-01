@@ -15,8 +15,10 @@ public class Route {
         return distanceTravelled / timePassedInSeconds;
     }
 
-    public int caloriesBurned(){
-        // TODO Calculate how many calories burned according to distance, speed, gender etc.
-        return 0;
+    public double caloriesBurned(Account a){
+        final double calculationConstant1 = 0.035;
+        final double calculationConstant2 = 0.029;
+        double calorie = (calculationConstant1* a.getWeight()) + (this.calculateSpeed / a.getHeight())*calculationConstant2*a.getWeight();
+        return calorie;
     }
 }
