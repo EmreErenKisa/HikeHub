@@ -35,14 +35,14 @@ public class FriendsScreen extends AppCompatActivity {
         ConstraintLayout.LayoutParams searchUsernameParams =
                 (ConstraintLayout.LayoutParams) searchUsername.getLayoutParams();
 
-        invalidUsernameParams.width = MainActivity.width / 2;
-        searchUsernameParams.width = MainActivity.width / 2;
+        invalidUsernameParams.width = UserScreen.width / 2;
+        searchUsernameParams.width = UserScreen.width / 2;
 
         invalidUsername.setLayoutParams(invalidUsernameParams);
         searchUsername.setLayoutParams(searchUsernameParams);
 
         findViewById(R.id.addFriendScreen).setVisibility(View.INVISIBLE);
-        friendsTitleParams.topMargin = MainActivity.topRectParams.height + 20;
+        friendsTitleParams.topMargin = UserScreen.topRectParams.height + 20;
     }
 
     public void addFriend(View v){

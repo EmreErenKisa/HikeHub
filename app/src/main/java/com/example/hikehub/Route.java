@@ -18,7 +18,7 @@ public class Route {
     public double caloriesBurned(Account a){
         final double calculationConstant1 = 0.035;
         final double calculationConstant2 = 0.029;
-        double calorie = (calculationConstant1* a.getWeight()) + (this.calculateSpeed / a.getHeight())*calculationConstant2*a.getWeight();
+        double calorie = (calculationConstant1* a.getWeight()) + (calculateSpeed() / a.getHeight())*calculationConstant2*a.getWeight();
         return calorie;
     }
 }
