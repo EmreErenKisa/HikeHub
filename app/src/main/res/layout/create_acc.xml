@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5E492B"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:alpha="0.25"
+        app:layout_constraintBottom_toBottomOf="@+id/createNewAccount"
+        app:layout_constraintEnd_toEndOf="@+id/passString"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/hiking_sunset_wallpaper" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/hhstring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="150dp"
+                android:text="HikeHub"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false"
+
+                android:textSize="60sp"
+                android:textStyle="bold"
+                android:translationX="100dp"
+                android:translationY="50dp"
+                app:layout_constraintBottom_toTopOf="@+id/emailString"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/backgroundImage"
+                app:layout_constraintVertical_bias="0.657" />
+
+            <TextView
+                android:id="@+id/emailString"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="250dp"
+                android:text="Email"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.301"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/emailTV"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="100dp"
+                android:alpha="0.5"
+                android:background="#D9D9D9"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:translationX="100dp"
+                android:translationY="-250dp"
+                app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailString"
+                app:layout_constraintVertical_bias="0.116" />
+
+            <TextView
+                android:id="@+id/passString"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="100dp"
+                android:text="Password"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                android:translationY="-350dp"
+                app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.401"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTV"
+                app:layout_constraintVertical_bias="0.705" />
+
+            <EditText
+                android:id="@+id/passtv"
+                android:layout_width="237dp"
+                android:layout_height="69dp"
+                android:alpha="0.5"
+                android:background="#D9D9D9"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:translationX="100dp"
+                android:translationY="-450dp"
+                app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passString" />
+
+            <TextView
+                android:id="@+id/confpass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm Pass"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                android:translationY="-420dp" />
+
+            <EditText
+                android:id="@+id/confpasstv"
+                android:layout_width="237dp"
+                android:layout_height="69dp"
+                android:alpha="0.5"
+                android:background="#D9D9D9"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:translationX="100dp"
+                android:translationY="-420dp" />
+
+            <TextView
+                android:id="@+id/Username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                android:translationY="-400dp" />
+
+            <EditText
+                android:id="@+id/usernTV"
+                android:layout_width="236dp"
+                android:layout_height="69dp"
+                android:alpha="0.5"
+                android:background="#D9D9D9"
+                android:textColorLink="#614444"
+                android:translationX="100dp"
+                android:translationY="-400dp" />
+
+            <TextView
+                android:id="@+id/sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sex"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                android:translationY="-380dp" />
+
+            <RadioGroup
+                android:id="@+id/sexChoice"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:translationX="100dp"
+                android:translationY="-380dp">
+
+                <RadioButton
+                    android:id="@+id/maleRB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Male"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/femaleRB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#FFFFFF"
+                    android:checked="false"
+                    android:text="Female"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                android:translationY="-360dp" />
+
+            <EditText
+                android:id="@+id/ageTV"
+                android:layout_width="237dp"
+                android:layout_height="64dp"
+                android:alpha="0.5"
+                android:background="#D9D9D9"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:translationX="100dp"
+                android:translationY="-360dp" />
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight (kg)"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                android:translationY="-340dp" />
+
+            <EditText
+                android:id="@+id/weightTV"
+                android:layout_width="237dp"
+                android:layout_height="64dp"
+                android:alpha="0.5"
+                android:background="#D9D9D9"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:translationX="100dp"
+                android:translationY="-340dp" />
+
+            <TextView
+                android:id="@+id/height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Height (m)"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="40sp"
+                android:translationX="100dp"
+                android:translationY="-320dp" />
+
+            <EditText
+                android:id="@+id/heightTV"
+                android:layout_width="237dp"
+                android:layout_height="64dp"
+                android:alpha="0.5"
+                android:background="#D9D9D9"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:translationX="100dp"
+                android:translationY="-320dp" />
+
+            <Button
+                android:id="@+id/createAccButton"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="32dp"
+                android:onClick="newAccount"
+                android:text="Create Account"
+                android:textAllCaps="false"
+                android:textColorLink="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:translationX="120dp"
+                android:translationY="-300dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

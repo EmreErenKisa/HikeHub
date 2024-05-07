@@ -2,17 +2,221 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/MainScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainScreen">
+    android:background="#5E492B"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <Button
-        android:id="@+id/login"
+    <TextView
+        android:id="@+id/hhstring"
+        android:layout_width="305dp"
+        android:layout_height="89dp"
+        android:text="HikeHub"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:translationX="100dp"
+        android:translationY="50dp"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="-25dp" />
+
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="Login"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="153dp" />
+        android:layout_marginEnd="4dp"
+        android:alpha="0.25"
+        app:layout_constraintBottom_toBottomOf="@+id/createNewAccount"
+        app:layout_constraintEnd_toEndOf="@+id/passString"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/hiking_sunset_wallpaper" />
+
+    <Button
+        android:id="@+id/signinButton"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="logintoApp"
+        android:text="Sign In"
+        android:textAllCaps="false"
+        android:textColorLink="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/createNewAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/createNewAccount"
+        android:layout_width="206dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:onClick="createAccount"
+        android:text="Create a new Account"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/emailTV"
+        android:layout_width="223dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="100dp"
+        android:alpha="0.5"
+        android:background="@drawable/roundcorner"
+        android:backgroundTint="#D9D9D9"
+        android:ems="10"
+        android:hint="Write your email"
+        android:inputType="textEmailAddress"
+        android:textColor="#FBFBFB"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailString"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <EditText
+        android:id="@+id/passtv"
+        android:layout_width="223dp"
+        android:layout_height="67dp"
+        android:alpha="0.5"
+        android:background="@drawable/roundcorner"
+        android:backgroundTint="#D9D9D9"
+        android:ems="10"
+        android:hint="Write your password"
+        android:inputType="textPassword"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passString"
+        app:layout_constraintVertical_bias="0.461" />
+
+    <TextView
+        android:id="@+id/passString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="100dp"
+        android:text="Password"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTV"
+        app:layout_constraintVertical_bias="0.777" />
+
+    <TextView
+        android:id="@+id/forgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="256dp"
+        android:onClick="forgotPass"
+        android:text="Forgot Password?"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/emailString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="248dp"
+        android:text="Email"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/forgotPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/forgotPassFrame"
+        android:layout_width="411dp"
+        android:layout_height="319dp"
+        android:layout_marginEnd="4dp"
+        android:background="#6C6C6C"
+        android:translationX="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/emailTV2"
+            android:layout_width="223dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="4dp"
+            android:alpha="0.5"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="#191818"
+            android:ems="10"
+            android:hint="Write your email"
+            android:inputType="textEmailAddress"
+            android:textColor="#FBFBFB"
+            android:textColorHint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.329"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.435" />
+
+        <TextView
+            android:id="@+id/confirmEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="224dp"
+            android:text="Enter your e-mail"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.244"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="163dp"
+            android:layout_height="61dp"
+            android:layout_marginBottom="52dp"
+            android:text="OK"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/cancelAddFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#00FFFFFF"
+            android:onClick="closeFP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ellipse_29__2_" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
