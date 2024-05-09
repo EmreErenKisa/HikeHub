@@ -13,10 +13,11 @@
         android:theme="@style/Theme.HikeHub"
         tools:targetApi="31">
         <activity
-            android:name=".CreateAccount"
-            android:exported="false"
-            android:label="@string/title_activity_create_account"
-            android:theme="@style/Theme.HikeHub" />
+            android:name=".ProfileScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileScreenActivity"
+            android:exported="false" />
         <activity
             android:name=".UserScreen"
             android:exported="false" />
@@ -36,5 +37,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

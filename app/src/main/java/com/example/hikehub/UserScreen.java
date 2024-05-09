@@ -92,4 +92,9 @@ public class UserScreen extends AppCompatActivity {
         Intent i = new Intent(this, FriendsScreen.class);
         startActivity(i);
     }
+
+    public void profileScreen(View v){
+        Intent i = new Intent(this, ProfileScreen.class);
+        startActivity(i);
+    }
 }
