@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SuperScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".ProfileScreen">
+
+    <include layout="@layout/super_screen" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="ExtraText"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp">
+
+        <Button
+            android:id="@+id/weight"
+            android:layout_width="138dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="84dp"
+            android:backgroundTint="#5CFFFFFF"
+            android:onClick="setWeight"
+            android:text="Weight"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/age"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/height" />
+
+        <Button
+            android:id="@+id/height"
+            android:layout_width="138dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="400dp"
+            android:backgroundTint="#5CFFFFFF"
+            android:onClick="setHeight"
+            android:text="Height"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/weight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/age"
+            android:layout_width="138dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="84dp"
+            android:backgroundTint="#5CFFFFFF"
+            android:onClick="setAge"
+
+            android:text="Age"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weight" />
+
+
+        <ImageButton
+            android:id="@+id/profilePhoto"
+            android:layout_width="179dp"
+            android:layout_height="187dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginTop="104dp"
+            android:background="#00FFFFFF"
+            android:foreground="@drawable/default_pp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/pickAvatar"
+            android:layout_width="129dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="230dp"
+            android:backgroundTint="@color/hikehubbackground"
+            android:backgroundTintMode="screen"
+            android:text="Pick Avatar"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/username"
+            android:layout_width="170dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="288dp"
+            android:layout_marginEnd="120dp"
+            android:backgroundTint="#5CFFFFFF"
+            android:clickable="false"
+            android:text="username"
+            android:textSize="24sp"
+            app:iconTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        e
+
+        <EditText
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="328dp"
+            android:layout_marginEnd="80dp"
+            android:accessibilityHeading="false"
+            android:clickable="false"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:text="Challenge Score          100"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/ageEdit"
+            android:layout_width="138dp"
+            android:layout_height="53dp"
+            android:layout_marginEnd="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Age"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/sex"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weightEdit"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/heightEdit"
+            android:layout_width="138dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Height"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/weightEdit"
+            android:layout_width="138dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Weight"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heightEdit" />
+
+        <Button
+            android:id="@+id/deleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="650dp"
+            android:layout_marginEnd="100dp"
+            android:backgroundTint="#FF0000"
+            android:onClick="deleteAccount"
+            android:text="Delete Account"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sex"
+            android:layout_width="272dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="570dp"
+            android:layout_marginEnd="80dp"
+            android:text="Sex:   Male"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/goBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F80505"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="170dp"
+            android:text="Go Back"
+            android:onClick="goBackToMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/confirmDeleteScreen"
+            android:layout_width="451dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="550dp"
+            android:background="@color/hikehubbackground"
+            android:backgroundTint="#858383"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="-20dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="93dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="94dp"
+                android:text="Confirm delete account?"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/OK"
+                android:layout_width="105dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="69dp"
+                android:layout_marginTop="37dp"
+                android:backgroundTint="#06E60F"
+                android:onClick="closeDeleteAccount"
+                android:text="OK"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/cancle"
+                android:layout_width="102dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="37dp"
+                android:backgroundTint="#F80505"
+                android:onClick="closeDeleteAccount"
+                android:text="Cancle"
+                app:layout_constraintStart_toEndOf="@+id/OK"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

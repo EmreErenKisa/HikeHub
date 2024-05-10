@@ -19,4 +19,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="profileScreen"
+        android:text="Profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="117dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
