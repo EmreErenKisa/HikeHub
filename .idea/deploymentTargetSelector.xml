@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetSelector">
@@ -8,7 +7,6 @@
       </SelectionState>
     </selectionStates>
   </component>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetSelector">
@@ -27,5 +25,4 @@
       </SelectionState>
     </selectionStates>
   </component>
->>>>>>> Stashed changes
 </project>

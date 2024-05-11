@@ -7,17 +7,108 @@
     android:layout_height="match_parent"
     tools:context=".UserScreen">
 
-    <include layout="@layout/super_screen"/>
+    <include
+        android:id="@+id/include2"
+        layout="@layout/super_screen" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="friendScreen"
-        android:text="Social"
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="340dp"
+        android:layout_height="210dp"
+        android:background="@drawable/main_casual_background"
+        android:contentDescription="a"
+        android:onClick="goBackToMain"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <TextView
+        android:layout_width="267dp"
+        android:layout_height="159dp"
+        android:clickable="false"
+        android:shadowColor="@color/black"
+        android:shadowRadius="13"
+        android:text="Casual"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="340dp"
+        android:layout_height="210dp"
+        android:background="@drawable/main_challenge_background"
+        android:contentDescription="b"
+        android:onClick="endScreen"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.585" />
+
+    <TextView
+        android:layout_width="267dp"
+        android:layout_height="159dp"
+        android:clickable="false"
+        android:shadowColor="@color/black"
+        android:shadowRadius="13"
+        android:text="Challenge"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="340dp"
+        android:layout_height="210dp"
+        android:background="@drawable/main_social_background"
+        android:contentDescription="c"
+        android:onClick="friendScreen"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98" />
+
+    <TextView
+        android:layout_width="267dp"
+        android:layout_height="159dp"
+        android:clickable="false"
+        android:shadowColor="@color/black"
+        android:shadowRadius="13"
+        android:text="Social"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.921" />
 
     <Button
         android:id="@+id/button2"

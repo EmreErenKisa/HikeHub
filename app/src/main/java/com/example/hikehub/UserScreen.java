@@ -97,4 +97,9 @@ public class UserScreen extends AppCompatActivity {
         Intent i = new Intent(this, ProfileScreen.class);
         startActivity(i);
     }
+
+    public void endScreen(View v){
+        Intent i = new Intent(this, CasualFinish.class);
+        startActivity(i);
+    }
 }
