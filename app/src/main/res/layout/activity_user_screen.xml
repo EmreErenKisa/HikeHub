@@ -50,7 +50,7 @@
         android:layout_height="210dp"
         android:background="@drawable/main_challenge_background"
         android:contentDescription="b"
-        android:onClick="friendScreen"
+        android:onClick="endScreen"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
