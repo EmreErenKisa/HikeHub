@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#423F3D"
-    tools:context=".MainActivity">
+    tools:context=".SuperScreen">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,6 +35,7 @@
             android:layout_marginEnd="10dp"
             android:background="#00FFFFFF"
             android:foreground="@drawable/default_pp"
+            android:onClick="profileScreen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
