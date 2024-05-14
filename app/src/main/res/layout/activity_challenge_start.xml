@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/super_screen" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="531dp"
+        android:layout_height="265dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="107dp" />
+
+    <EditText
+        android:id="@+id/editTextText6"
+        android:layout_width="294dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/hikehubbackground"
+        android:backgroundTint="@color/hikehubbackground"
+        android:ems="10"
+        android:inputType="text"
+        android:text="    Enter distence (meters)"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FDFCFC"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigationView" />
+
+    <TextView
+        android:id="@+id/challangeDistance"
+        android:layout_width="190dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/roundcorner"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+
+    <RadioGroup
+        android:id="@+id/challangeOptions"
+        android:layout_width="158dp"
+        android:layout_height="182dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/roundcorner"
+
+        android:backgroundTint="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challangeDistance"
+        tools:visibility="visible">
+
+        <RadioButton
+            android:id="@+id/Easy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Easy"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medium"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/Hard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hard"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/Bolt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bolt"
+            android:textStyle="bold"
+            android:visibility="visible" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/createRoute"
+        android:layout_width="258dp"
+        android:layout_height="61dp"
+        android:background="@drawable/roundcorner"
+        android:backgroundTint="#3F51B5"
+        android:text="CREATE ROUTE"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/challangeOptions"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

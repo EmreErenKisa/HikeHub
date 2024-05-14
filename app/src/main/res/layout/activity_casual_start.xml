@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hikehubbackground"
+    android:visibility="visible">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/super_screen" />
+
+    <EditText
+        android:id="@+id/casualText"
+        android:layout_width="409dp"
+        android:layout_height="107dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="    Enter distance (meters) or tap on the screen"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="402dp" />
+
+    <Button
+        android:id="@+id/createCasual"
+        android:layout_width="258dp"
+        android:layout_height="61dp"
+        android:text="CREATE ROUTE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="615dp" />
+
+    <TextView
+        android:id="@+id/casualDistance"
+        android:layout_width="182dp"
+        android:layout_height="64dp"
+        android:background="@drawable/roundcorner"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/createCasual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/casualText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="410dp"
+        android:layout_height="288dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/casualText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
