@@ -1,8 +1,6 @@
 package com.example.hikehub;
 
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,11 +19,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class CreateAccount extends AppCompatActivity {
 
@@ -59,7 +63,6 @@ public class CreateAccount extends AppCompatActivity {
         sexM = findViewById(R.id.maleRB);
         sexF = findViewById(R.id.femaleRB);
         mAuth = FirebaseAuth.getInstance();
-
     }
 
     public void newAccount(View v){
@@ -91,8 +94,6 @@ public class CreateAccount extends AppCompatActivity {
             return;
         }
 
-
-
         mAuth.createUserWithEmailAndPassword(emailS,passwordS)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
@@ -109,6 +110,45 @@ public class CreateAccount extends AppCompatActivity {
                 });
 
         Account acc = new Account(emailS,passwordS,userS,isMale,ageNumber,heightNumber,weightNumber);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Checks if user already exists
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getData().equals(acc)) {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(CreateAccount.this, "User already exists.",
+                                            Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                        } else {
+                            Log.w("CreateAccount", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        // Creates new user if one already DNE
+        db.collection("users")
+                .add(acc)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("CreateAccount", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("CreateAccount", "Error adding document", e);
+                    }
+                });
+
         Intent i = new Intent(this, UserScreen.class);
         startActivity(i);
     }
