@@ -2,10 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CasualStart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/hikehubbackground"
-    android:visibility="visible">
+    android:visibility="visible"
+    tools:context=".CasualStart">
 
     <include
         android:id="@+id/include2"
@@ -21,41 +23,41 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/casualDistance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="402dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/createCasual"
         android:layout_width="258dp"
         android:layout_height="61dp"
+        android:layout_marginBottom="10dp"
         android:text="CREATE ROUTE"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="615dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/casualDistance"
         android:layout_width="182dp"
         android:layout_height="64dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/roundcorner"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/createCasual"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/casualText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="410dp"
-        android:layout_height="288dp"
-        android:layout_marginBottom="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="513dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toTopOf="@+id/casualText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -93,8 +93,12 @@ public class UserScreen extends SuperScreen {
         startActivity(i);
     }
 
-    public void endScreen(View v){
-        Intent i = new Intent(this, CasualFinish.class);
+    public void casual(View v){
+        Intent i = new Intent(this, Casual_Start.class);
+        startActivity(i);
+    }
+    public void challange(View v){
+        Intent i = new Intent(this, ChallangeStart.class);
         startActivity(i);
     }
 }

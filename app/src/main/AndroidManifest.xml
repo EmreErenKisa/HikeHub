@@ -13,6 +13,18 @@
         android:theme="@style/Theme.HikeHub"
         tools:targetApi="31">
         <activity
+            android:name=".ChallengeOngoing"
+            android:exported="false" />
+        <activity
+            android:name=".ChallangeStart"
+            android:exported="false" />
+        <activity
+            android:name=".CasualOngoing"
+            android:exported="false" />
+        <activity
+            android:name=".Casual_Start"
+            android:exported="false" />
+        <activity
             android:name=".SuperScreen"
             android:exported="false" />
         <activity
