@@ -2,6 +2,7 @@ package com.example.hikehub;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -98,9 +102,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logintoApp(View v){
-        // TODO: Check if the user data available in firebase
-
-        login();
+        mAuth.signInWithEmailAndPassword( String.valueOf(email.getText()), String.valueOf(password.getText()) )
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("MainActivity", "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            login();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("MainActivity", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "User does not exist.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override
