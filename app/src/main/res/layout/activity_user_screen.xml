@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".UserScreen">
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/super_screen" />
+    <include layout="@layout/super_screen" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -17,7 +15,7 @@
         android:layout_height="210dp"
         android:background="@drawable/main_casual_background"
         android:contentDescription="a"
-        android:onClick="goBackToMain"
+        android:onClick="casual"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +48,7 @@
         android:layout_height="210dp"
         android:background="@drawable/main_challenge_background"
         android:contentDescription="b"
-        android:onClick="endScreen"
+        android:onClick="challange"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
