@@ -13,12 +13,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     Button Signin;
     TextView createAcc;
 
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.passtv);
         Signin = findViewById(R.id.signinButton);
         createAcc = findViewById(R.id.createNewAccount);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     public void createAccount(View v){
@@ -45,6 +53,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logintoApp(View v){
+        // TODO: Check if the user data available in firebase
+        login();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        if (mAuth.getCurrentUser() != null) {
+            login();
+        }
+    }
+
+    private void login(){
         Intent i = new Intent(this, UserScreen.class);
         startActivity(i);
     }

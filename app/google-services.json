@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "262009591332",
+    "project_id": "hikehub-6fb86",
+    "storage_bucket": "hikehub-6fb86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262009591332:android:cd25e888ffa3f8bb362ab1",
+        "android_client_info": {
+          "package_name": "com.example.hikehub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262009591332-c75s34069q7oje0nc9cqm9h9se6f1lnu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hikehub",
+            "certificate_hash": "d7e9d80161dc4cb6bae5397fe6e595bca4f72e8b"
+          }
+        },
+        {
+          "client_id": "262009591332-qt0hgnepl15em2j6el0s6b2suipbfgjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvr9_As0M6A5WG7Wl84aa7W-t_6xnDo4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262009591332-qt0hgnepl15em2j6el0s6b2suipbfgjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

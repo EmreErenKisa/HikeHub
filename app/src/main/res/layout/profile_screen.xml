@@ -75,6 +75,7 @@
             android:layout_width="129dp"
             android:layout_height="60dp"
             android:layout_marginTop="230dp"
+            android:background="#00FFFFFF"
             android:backgroundTint="@color/hikehubbackground"
             android:backgroundTintMode="screen"
             android:text="Pick Avatar"
@@ -193,18 +194,6 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/goBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#F80505"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="170dp"
-            android:text="Go Back"
-            android:onClick="goBackToMain"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

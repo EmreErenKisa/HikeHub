@@ -17,7 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class UserScreen extends AppCompatActivity {
+public class UserScreen extends SuperScreen {
     public static ImageView hikehubLogo;
     public static ImageButton profilePhoto;
     public static TextView topRectangle;
@@ -90,11 +90,6 @@ public class UserScreen extends AppCompatActivity {
 
     public void friendScreen(View v){
         Intent i = new Intent(this, FriendsScreen.class);
-        startActivity(i);
-    }
-
-    public void profileScreen(View v){
-        Intent i = new Intent(this, ProfileScreen.class);
         startActivity(i);
     }
 

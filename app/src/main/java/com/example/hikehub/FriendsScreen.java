@@ -12,7 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class FriendsScreen extends AppCompatActivity {
+public class FriendsScreen extends SuperScreen {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
