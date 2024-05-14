@@ -165,7 +165,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="gone">
+        tools:visibility="invisible">
 
         <EditText
             android:id="@+id/emailTV2"
@@ -202,10 +202,11 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/forgotPassB"
             android:layout_width="163dp"
             android:layout_height="61dp"
             android:layout_marginBottom="52dp"
+            android:onClick="forgotPassButton"
             android:text="OK"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"

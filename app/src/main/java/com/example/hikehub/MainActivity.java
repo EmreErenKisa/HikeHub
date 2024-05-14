@@ -2,17 +2,22 @@ package com.example.hikehub;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     Button Signin;
     TextView createAcc;
+
+    Button forgotPass;
+
+    TextView FPemail;
 
     private FirebaseAuth mAuth;
     @Override
@@ -33,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.passtv);
         Signin = findViewById(R.id.signinButton);
         createAcc = findViewById(R.id.createNewAccount);
+        forgotPass = findViewById(R.id.forgotPassB);
+        FPemail = findViewById(R.id.emailTV2);
 
         // Initialize Firebase Auth,,
         mAuth = FirebaseAuth.getInstance();
@@ -50,6 +61,36 @@ public class MainActivity extends AppCompatActivity {
 
     public void forgotPass(View v){
         findViewById(R.id.forgotPassFrame).setVisibility(View.VISIBLE);
+    }
+
+    public void forgotPassButton(View v){
+        String StrEmail = FPemail.getText().toString().trim();
+        if(!TextUtils.isEmpty(StrEmail)){
+            ResetPassword();
+        }
+        else {
+            FPemail.setError("Email cannot be empty!!!");
+        }
+    }
+
+    private void ResetPassword(){
+
+
+        mAuth.sendPasswordResetEmail(FPemail.getText().toString().trim())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(MainActivity.this,"Reset Password link has been sent to your registered email", Toast.LENGTH_SHORT).show();
+                        findViewById(R.id.forgotPassFrame).setVisibility(View.INVISIBLE);
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this,"Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void closeFP(View v){
