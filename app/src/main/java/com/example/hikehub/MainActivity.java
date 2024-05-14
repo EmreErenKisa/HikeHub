@@ -34,8 +34,12 @@ public class MainActivity extends AppCompatActivity {
         Signin = findViewById(R.id.signinButton);
         createAcc = findViewById(R.id.createNewAccount);
 
-        // Initialize Firebase Auth
+        // Initialize Firebase Auth,,
         mAuth = FirebaseAuth.getInstance();
+
+        String emailS, passwordS, userS;
+        emailS = String.valueOf(email.getText());
+        passwordS = String.valueOf(password.getText());
 
     }
 
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void logintoApp(View v){
         // TODO: Check if the user data available in firebase
+
         login();
     }
 
