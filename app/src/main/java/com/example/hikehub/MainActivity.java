@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView FPemail;
 
+    String emailS, passwordS;
+
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         // Initialize Firebase Auth,,
         mAuth = FirebaseAuth.getInstance();
 
-        String emailS, passwordS, userS;
         emailS = String.valueOf(email.getText());
         passwordS = String.valueOf(password.getText());
 
@@ -102,7 +103,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logintoApp(View v){
-        mAuth.signInWithEmailAndPassword( String.valueOf(email.getText()), String.valueOf(password.getText()) )
+        emailS = String.valueOf(email.getText());
+        passwordS = String.valueOf(password.getText());
+
+        if(TextUtils.isEmpty(emailS)){
+            Toast.makeText(MainActivity.this,"Enter email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.isEmpty(passwordS)){
+            Toast.makeText(MainActivity.this,"Enter password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(emailS, passwordS)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
