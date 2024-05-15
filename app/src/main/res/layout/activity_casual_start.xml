@@ -13,51 +13,53 @@
         android:id="@+id/include2"
         layout="@layout/super_screen" />
 
-    <EditText
+    <TextView
         android:id="@+id/casualText"
-        android:layout_width="409dp"
-        android:layout_height="107dp"
-        android:ems="10"
-        android:inputType="text"
+        android:layout_width="414dp"
+        android:layout_height="50dp"
+        android:clickable="false"
         android:text="    Enter distance (meters) or tap on the screen"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/casualDistance"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <Button
         android:id="@+id/createCasual"
         android:layout_width="258dp"
         android:layout_height="61dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="4dp"
         android:text="CREATE ROUTE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/casualDistance"
         android:layout_width="182dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/roundcorner"
         android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/createCasual"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="513dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/casualText"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="411dp"
+        android:layout_height="513dp"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="0dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
