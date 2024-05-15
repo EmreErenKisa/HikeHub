@@ -134,7 +134,6 @@ public class ProfileScreen extends SuperScreen {
             profilePhoto.setForeground((Drawable) UserScreen.acc.get("profilePhoto"));
         }
 
-        Toast.makeText(ProfileScreen.this, UserScreen.acc.get("male").getClass().toString(), Toast.LENGTH_LONG).show();
         if ((Boolean) UserScreen.acc.get("male")) {
             gender.setText(R.string.genderMale);
         }

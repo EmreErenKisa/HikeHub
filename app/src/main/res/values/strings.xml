@@ -3,4 +3,5 @@
     <string name="title_activity_create_account">CreateAccount</string>
     <string name="genderMale">Sex: Male</string>
     <string name="genderFemale">Sex: Female</string>
+    <string name="my_API_key">AIzaSyBLQw8_0Q_kaNu2q8SNC7ohuPvUxslEMho</string>
 </resources>
