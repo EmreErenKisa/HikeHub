@@ -13,8 +13,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class ProfileScreen extends SuperScreen {
     ImageButton myImageButton;
+
     int SELECT_PICTURE = 200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,7 @@ public class ProfileScreen extends SuperScreen {
             return insets;
         });
     }
+
     public void pickAvatar()
     {
         imageChooser();

@@ -15,8 +15,9 @@
 
     <EditText
         android:id="@+id/casualText"
-        android:layout_width="409dp"
-        android:layout_height="107dp"
+        android:layout_width="416dp"
+        android:layout_height="52dp"
+        android:editable="false"
         android:ems="10"
         android:inputType="text"
         android:text="    Enter distance (meters) or tap on the screen"
@@ -32,32 +33,32 @@
         android:id="@+id/createCasual"
         android:layout_width="258dp"
         android:layout_height="61dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="4dp"
         android:text="CREATE ROUTE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/casualDistance"
         android:layout_width="182dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/roundcorner"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/createCasual"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="411dp"
         android:layout_height="513dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/casualText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
