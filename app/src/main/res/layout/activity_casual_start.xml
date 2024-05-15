@@ -28,6 +28,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8" />
 
+    <TextView
+        android:id="@+id/ongoingText"
+        android:layout_width="414dp"
+        android:layout_height="50dp"
+        android:clickable="false"
+        android:textAlignment="center"
+        android:text="Remaining distance"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
     <Button
         android:id="@+id/createCasual"
         android:layout_width="258dp"
@@ -59,6 +75,20 @@
         android:background="@drawable/roundcorner"
         android:backgroundTint="#FFFFFF"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
+
+    <TextView
+        android:id="@+id/ongoingDistance"
+        android:layout_width="182dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/roundcorner"
+        android:backgroundTint="#FFFFFF"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

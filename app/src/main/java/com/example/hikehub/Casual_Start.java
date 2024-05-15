@@ -38,6 +38,9 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,8 +58,10 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
     FusedLocationProviderClient fusedLocationProviderClient;
     Button startRoute;
     Button leaveRoute;
-    EditText showDistance;
-    TextView textView;
+    EditText enterDistance;
+    TextView showDistance;
+    TextView textView1;
+    TextView textView2;
     LatLng location;
     LatLng destination;
     Polyline currentPolyLine;
@@ -69,22 +74,30 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
 
         routeStarted = false;
         startRoute = findViewById(R.id.createCasual);
-        showDistance = findViewById(R.id.casualDistance);
-        textView = findViewById(R.id.casualText);
+        enterDistance = findViewById(R.id.casualDistance);
+        showDistance = findViewById(R.id.ongoingDistance);
+        textView1 = findViewById(R.id.casualText);
+        textView2 = findViewById(R.id.ongoingText);
         leaveRoute = findViewById(R.id.leaveCasual);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
 
         startRoute.setOnClickListener(view -> {
-            if (destination.equals(null)) {
+            if (destination == null && enterDistance.getText().toString().trim().equals("")) {
                 Toast.makeText(this, "Please enter a destination.", Toast.LENGTH_SHORT).show();
             } else {
+                if (!enterDistance.getText().toString().trim().equals("")) {
+                    destination = createDistance(Double.parseDouble(enterDistance.getText().toString().trim()));
+                }
                 routeStarted = true;
                 leaveRoute.setVisibility(VISIBLE);
+                showDistance.setVisibility(VISIBLE);
+                textView2.setVisibility(VISIBLE);
+
                 startRoute.setVisibility(INVISIBLE);
-                showDistance.setClickable(false);
-                textView.setText("Remaining Distance");
+                enterDistance.setVisibility(INVISIBLE);
+                textView1.setVisibility(INVISIBLE);
                 createRoute();
             }
         });
@@ -94,8 +107,24 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
         });
     }
 
+    private LatLng createDistance(double distanceInMeters) {
+        // Convert distance from meters to degrees (approximately)
+        double latDegreesPerMeter = 1.0 / 111000.0;
+        double lonDegreesPerMeter = 1.0 / (111000.0 * Math.cos(Math.toRadians(location.latitude)));
+
+        // Generate random offsets within the specified distance range
+        double latOffset = (Math.random() * 2 - 1) * (distanceInMeters * latDegreesPerMeter);
+        double lonOffset = (Math.random() * 2 - 1) * (distanceInMeters * lonDegreesPerMeter);
+
+        // Calculate random endpoint coordinates
+        double randomLat = location.latitude + latOffset;
+        double randomLng = location.longitude + lonOffset;
+
+        return new LatLng(randomLat, randomLng);
+    }
+
     private void createRoute() {
-        new FetchURL(Casual_Start.this).execute("https://maps.googleapis.com/maps/api/directions/json?destination=" + destination.latitude + "," + destination.longitude + "&mode=walking&origin=" + location.latitude + "," + location.longitude + "&key=" + getString(R.string.my_API_key), "walking");
+        new FetchURL(Casual_Start.this).execute("https://maps.googleapis.com/maps/api/directions/json?destination=" + destination.latitude + "," + destination.longitude + "&units=metric&mode=walking&origin=" + location.latitude + "," + location.longitude + "&key=" + getString(R.string.my_API_key), "walking");
     }
 
     private void getLastLocation() {
@@ -129,14 +158,16 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
 
             @Override
             public void onMapClick(@NonNull LatLng latLng) {
-                    timesMapClicked++;
-                    if (timesMapClicked > 1) {
-                        gMap.clear();
-                        gMap.addCircle(new CircleOptions().center(location).radius(30).fillColor(rgb(255,255,255)).strokeWidth(0).visible(true));
-                        gMap.addCircle(new CircleOptions().center(location).radius(22).fillColor(rgb(50,50,255)).strokeWidth(0).visible(true));
+                    if (!routeStarted && enterDistance.getText().toString().trim().equals("")) {
+                        timesMapClicked++;
+                        if (timesMapClicked > 1) {
+                            gMap.clear();
+                            gMap.addCircle(new CircleOptions().center(location).radius(30).fillColor(rgb(255,255,255)).strokeWidth(0).visible(true));
+                            gMap.addCircle(new CircleOptions().center(location).radius(22).fillColor(rgb(50,50,255)).strokeWidth(0).visible(true));
+                        }
+                        destination = latLng;
+                        gMap.addMarker(new MarkerOptions().position(latLng).title("Destination").visible(true));
                     }
-                    destination = latLng;
-                    gMap.addMarker(new MarkerOptions().position(latLng).title("Destination").visible(true));
             }
         });
 
