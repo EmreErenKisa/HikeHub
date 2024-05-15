@@ -1,5 +1,7 @@
 package com.example.hikehub;
 
+import static android.graphics.Color.rgb;
+
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,9 +70,14 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
 
         gMap = googleMap;
+        gMap.setMinZoomPreference(15);
         LatLng location = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        gMap.addMarker(new MarkerOptions().position(location).title("You"));
+        gMap.addCircle(new CircleOptions().center(location).radius(5).fillColor(rgb(255,255,255)).strokeWidth(0).visible(true));
+        gMap.addCircle(new CircleOptions().center(location).radius(3).fillColor(rgb(50,50,255)).strokeWidth(0).visible(true));
         gMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+
+        gMap.getUiSettings().setZoomControlsEnabled(true);
+        gMap.getUiSettings().setCompassEnabled(true);
     }
 
     @Override
