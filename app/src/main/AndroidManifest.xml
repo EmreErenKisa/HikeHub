@@ -41,6 +41,9 @@
             android:name=".ChallengeFinish"
             android:exported="false" />
         <activity
+            android:name=".CasualFail"
+            android:exported="false" />
+        <activity
             android:name=".CasualFinish"
             android:exported="false" />
         <activity

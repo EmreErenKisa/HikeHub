@@ -4,6 +4,7 @@ import static android.graphics.Color.rgb;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -60,9 +61,7 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
     Button startRoute;
     Button leaveRoute;
     EditText enterDistance;
-    TextView showDistance;
     TextView textView1;
-    TextView textView2;
     LatLng location;
     LatLng destination;
     Polyline currentPolyLine;
@@ -76,9 +75,7 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
         routeStarted = false;
         startRoute = findViewById(R.id.createCasual);
         enterDistance = findViewById(R.id.casualDistance);
-        showDistance = findViewById(R.id.ongoingDistance);
         textView1 = findViewById(R.id.casualText);
-        textView2 = findViewById(R.id.ongoingText);
         leaveRoute = findViewById(R.id.leaveCasual);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -93,19 +90,24 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
                 }
                 routeStarted = true;
                 leaveRoute.setVisibility(VISIBLE);
-                showDistance.setVisibility(VISIBLE);
-                textView2.setVisibility(VISIBLE);
 
                 startRoute.setVisibility(INVISIBLE);
+                startRoute.setClickable(false);
                 enterDistance.setVisibility(INVISIBLE);
                 textView1.setVisibility(INVISIBLE);
                 createRoute();
             }
         });
+    }
 
-        leaveRoute.setOnClickListener(view -> {
+    public void finishEndScreen(View v) {
+        Intent i = new Intent(this, CasualFinish.class);
+        startActivity(i);
+    }
 
-        });
+    public void failEndScreen(View v) {
+            Intent i = new Intent(this, CasualFail.class);
+            startActivity(i);
     }
 
     private LatLng createDistance(double distanceInMeters) {
@@ -174,6 +176,13 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
 
         gMap = googleMap;
         location = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+
+        if (destination != null) {
+            if (location.longitude == destination.longitude && location.latitude == destination.latitude) {
+                Intent i = new Intent(this, CasualFinish.class);
+                startActivity(i);
+            }
+        }
 
         gMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
