@@ -1,5 +1,6 @@
 package com.example.hikehub;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ public class Account {
     private double height;
     private ArrayList<Account> friendList;
     private ArrayList<Chat> chatList;
-    private Image profilePhoto;
+    private Drawable profilePhoto;
+    private int challengeScore;
 
     public Account(String email, String password, String name, boolean isMale, int age, double height, double weight){
         this.email = email;
@@ -24,6 +26,9 @@ public class Account {
         this.age = age;
         this.height = height;
         this.weight = weight;
+        this.friendList = new ArrayList<>();
+        this.chatList = new ArrayList<>();
+        this.challengeScore = 0;
     }
 
     public void addFriend(Account newFriend){
@@ -50,7 +55,7 @@ public class Account {
         return -1;
     }
 
-    public void setProfilePhoto(Image profilePhoto) {
+    public void setProfilePhoto(Drawable profilePhoto) {
         this.profilePhoto = profilePhoto;
     }
 
@@ -74,7 +79,11 @@ public class Account {
         this.password = password;
     }
 
-    public Image getProfilePhoto() {
+    public void setChallengeScore(int challengeScore) {
+        this.challengeScore = challengeScore;
+    }
+
+    public Drawable getProfilePhoto() {
         return profilePhoto;
     }
 
@@ -112,5 +121,8 @@ public class Account {
 
     public String getPassword() {
         return password;
+    }
+    public int getChallengeScore() {
+        return challengeScore;
     }
 }

@@ -1,27 +1,48 @@
 package com.example.hikehub;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ProfileScreen extends SuperScreen {
-    ImageButton myImageButton;
+    ImageButton profilePhoto;
     int SELECT_PICTURE = 200;
+    EditText height;
+    EditText weight;
+    EditText age;
+    EditText score;
+    TextView gender;
+    ImageButton pp;
+
+    Button username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        myImageButton = findViewById(R.id.profilePhoto);
+
+        profilePhoto = findViewById(R.id.profilePhoto);
         setContentView(R.layout.profile_screen);
+
+        height = findViewById(R.id.heightEdit);
+        weight = findViewById(R.id.weightEdit);
+        age = findViewById(R.id.ageEdit);
+        gender = findViewById(R.id.sex);
+        score = findViewById(R.id.score);
+        username = findViewById(R.id.username);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.profileScreen), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -59,7 +80,7 @@ public class ProfileScreen extends SuperScreen {
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
-                    myImageButton.setImageURI(selectedImageUri);
+                    profilePhoto.setImageURI(selectedImageUri);
                 }
             }
         }
@@ -92,5 +113,29 @@ public class ProfileScreen extends SuperScreen {
         startActivity(i);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        username.setText((String) UserScreen.acc.get("name"));
+        height.setText(String.valueOf(UserScreen.acc.get("height")));
+        weight.setText(String.valueOf(UserScreen.acc.get("weight")));
+        age.setText(String.valueOf(UserScreen.acc.get("age")));
+        score.setText(String.valueOf(UserScreen.acc.get("challengeScore")));
+
+        if (UserScreen.acc.get("profilePhoto") == null) {
+            profilePhoto.setForeground(ResourcesCompat.getDrawable(getResources() ,R.drawable.default_pp, getTheme()));
+        }
+        else {
+            profilePhoto.setForeground((Drawable) UserScreen.acc.get("profilePhoto"));
+        }
+
+        Toast.makeText(ProfileScreen.this, UserScreen.acc.get("male").getClass().toString(), Toast.LENGTH_LONG).show();
+        if ((Boolean) UserScreen.acc.get("male")) {
+            gender.setText(R.string.genderMale);
+        }
+        else{
+            gender.setText(R.string.genderFemale);
+        }
+    }
 }

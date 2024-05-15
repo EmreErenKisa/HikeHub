@@ -13,10 +13,7 @@
         android:id="@+id/backgroundImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
         android:alpha="0.25"
-        app:layout_constraintBottom_toBottomOf="@+id/createNewAccount"
-        app:layout_constraintEnd_toEndOf="@+id/passString"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +23,11 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,6 +78,7 @@
                 android:backgroundTint="#D9D9D9"
                 android:ems="10"
                 android:inputType="textEmailAddress"
+                android:padding="15dp"
                 android:translationX="100dp"
                 android:translationY="-250dp"
                 app:layout_constraintBottom_toTopOf="@+id/forgotPass"
@@ -112,6 +114,7 @@
                 android:backgroundTint="#D9D9D9"
                 android:ems="10"
                 android:inputType="textPassword"
+                android:padding="15dp"
                 android:translationX="100dp"
                 android:translationY="-450dp"
                 app:layout_constraintBottom_toTopOf="@+id/forgotPass"
@@ -140,6 +143,7 @@
                 android:backgroundTint="#D9D9D9"
                 android:ems="10"
                 android:inputType="textPassword"
+                android:padding="15dp"
                 android:translationX="100dp"
                 android:translationY="-420dp" />
 
@@ -162,6 +166,7 @@
                 android:alpha="0.5"
                 android:background="@drawable/roundcorner"
                 android:backgroundTint="#D9D9D9"
+                android:padding="15dp"
                 android:textColorLink="#614444"
                 android:translationX="100dp"
                 android:translationY="-400dp" />
@@ -229,6 +234,7 @@
                 android:backgroundTint="#D9D9D9"
                 android:ems="10"
                 android:inputType="number"
+                android:padding="15dp"
                 android:textColor="#000000"
                 android:textColorHighlight="#FFFFFF"
                 android:translationX="100dp"
@@ -255,6 +261,7 @@
                 android:backgroundTint="#D9D9D9"
                 android:ems="10"
                 android:inputType="number"
+                android:padding="15dp"
                 android:textColor="#000000"
                 android:textColorHighlight="#FFFFFF"
                 android:translationX="100dp"
@@ -264,7 +271,7 @@
                 android:id="@+id/height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Height (m)"
+                android:text="Height (cm)"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textColorLink="#FFFFFF"
@@ -281,6 +288,7 @@
                 android:backgroundTint="#D9D9D9"
                 android:ems="10"
                 android:inputType="number"
+                android:padding="15dp"
                 android:textColor="#000000"
                 android:textColorHighlight="#FFFFFF"
                 android:translationX="100dp"

@@ -1,6 +1,5 @@
 package com.example.hikehub;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,6 +34,7 @@ public class CreateAccount extends AppCompatActivity {
 
     EditText email;
     EditText pass;
+    EditText confpass;
     EditText username;
     EditText age;
     EditText weight;
@@ -56,6 +56,7 @@ public class CreateAccount extends AppCompatActivity {
 
         email = findViewById(R.id.emailTV);
         pass = findViewById(R.id.passtv);
+        confpass = findViewById(R.id.confpasstv);
         username = findViewById(R.id.usernTV);
         age = findViewById(R.id.ageTV);
         weight = findViewById(R.id.weightTV);
@@ -76,38 +77,29 @@ public class CreateAccount extends AppCompatActivity {
         weightNumber = Double.parseDouble(weight.getText().toString());
         heightNumber = Double.parseDouble(height.getText().toString());
 
-        String emailS, passwordS, userS;
+        String emailS, passwordS, confPassS, userS;
         emailS = String.valueOf(email.getText());
         passwordS = String.valueOf(pass.getText());
+        confPassS = String.valueOf(confpass.getText());
         userS = String.valueOf(username.getText());
 
         if(TextUtils.isEmpty(emailS)){
             Toast.makeText(CreateAccount.this,"Enter email", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(passwordS)){
-            Toast.makeText(CreateAccount.this,"Enter password", Toast.LENGTH_SHORT).show();
+        if(passwordS.length() < 6){
+            Toast.makeText(CreateAccount.this,"Enter password with at least 6 characters",
+                    Toast.LENGTH_SHORT).show();
             return;
         }
         if(TextUtils.isEmpty(userS)){
             Toast.makeText(CreateAccount.this,"Enter username", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        mAuth.createUserWithEmailAndPassword(emailS,passwordS)
-                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(CreateAccount.this, "Acount created.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(CreateAccount.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        if (!confPassS.equals(passwordS)) {
+            Toast.makeText(CreateAccount.this,"Passwords are not the same. Failed!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Account acc = new Account(emailS,passwordS,userS,isMale,ageNumber,heightNumber,weightNumber);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -129,6 +121,22 @@ public class CreateAccount extends AppCompatActivity {
                             }
                         } else {
                             Log.w("CreateAccount", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        mAuth.createUserWithEmailAndPassword(emailS,passwordS)
+                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(CreateAccount.this, "Acount created.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(CreateAccount.this, "Please enter a valid email.",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
                         }
                     }
                 });

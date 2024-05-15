@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ResetPassword(){
-
-
         mAuth.sendPasswordResetEmail(FPemail.getText().toString().trim())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -139,9 +137,9 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        if (mAuth.getCurrentUser() != null) {
+        /*if (mAuth.getCurrentUser() != null) {
             login();
-        }
+        }*/
     }
 
     private void login(){
