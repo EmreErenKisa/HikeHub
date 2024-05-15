@@ -47,6 +47,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 public class Casual_Start extends SuperScreen implements OnMapReadyCallback, TaskLoadedCallback {
 
@@ -108,19 +109,39 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
     }
 
     private LatLng createDistance(double distanceInMeters) {
-        // Convert distance from meters to degrees (approximately)
-        double latDegreesPerMeter = 1.0 / 111000.0;
-        double lonDegreesPerMeter = 1.0 / (111000.0 * Math.cos(Math.toRadians(location.latitude)));
+        // Convert distance from meters to kilometers
+        double distanceInKm = distanceInMeters / 1000.0;
 
-        // Generate random offsets within the specified distance range
-        double latOffset = (Math.random() * 2 - 1) * (distanceInMeters * latDegreesPerMeter);
-        double lonOffset = (Math.random() * 2 - 1) * (distanceInMeters * lonDegreesPerMeter);
+        // Earth radius in kilometers
+        double earthRadius = 6371.0;
 
-        // Calculate random endpoint coordinates
-        double randomLat = location.latitude + latOffset;
-        double randomLng = location.longitude + lonOffset;
+        // Convert user's latitude and longitude to radians
+        double userLatRad = Math.toRadians(location.latitude);
+        double userLngRad = Math.toRadians(location.longitude);
 
-        return new LatLng(randomLat, randomLng);
+        // Generate a random bearing (direction) in radians
+        double randomBearingRad = Math.toRadians(new Random().nextDouble() * 360.0);
+
+        // Calculate endpoint latitude in radians
+        double endpointLatRad = Math.asin(Math.sin(userLatRad) * Math.cos(distanceInKm / earthRadius) +
+                Math.cos(userLatRad) * Math.sin(distanceInKm / earthRadius) *
+                        Math.cos(randomBearingRad));
+
+        // Calculate endpoint longitude in radians
+        double endpointLngRad = userLngRad + Math.atan2(Math.sin(randomBearingRad) * Math.sin(distanceInKm / earthRadius) * Math.cos(userLatRad),
+                Math.cos(distanceInKm / earthRadius) - Math.sin(userLatRad) * Math.sin(endpointLatRad));
+
+        // Convert endpoint latitude and longitude from radians to degrees
+        double endpointLat = Math.toDegrees(endpointLatRad);
+        double endpointLng = Math.toDegrees(endpointLngRad);
+        LatLng result = new LatLng(endpointLat, endpointLng);
+
+        gMap.clear();
+        gMap.addCircle(new CircleOptions().center(location).radius(30).fillColor(rgb(255,255,255)).strokeWidth(0).visible(true));
+        gMap.addCircle(new CircleOptions().center(location).radius(22).fillColor(rgb(50,50,255)).strokeWidth(0).visible(true));
+        gMap.addMarker(new MarkerOptions().position(result).title("Destination").visible(true));
+
+        return result;
     }
 
     private void createRoute() {
