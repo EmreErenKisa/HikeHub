@@ -15,8 +15,8 @@
 
     <TextView
         android:id="@+id/casualText"
-        android:layout_width="416dp"
-        android:layout_height="52dp"
+        android:layout_width="414dp"
+        android:layout_height="50dp"
         android:clickable="false"
         android:text="    Enter distance (meters) or tap on the screen"
         android:textColor="#FFFFFF"
@@ -58,6 +58,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="411dp"
         android:layout_height="513dp"
+        android:visibility="visible"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="0dp" />
 
