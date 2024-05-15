@@ -13,21 +13,20 @@
         android:id="@+id/include2"
         layout="@layout/super_screen" />
 
-    <EditText
+    <TextView
         android:id="@+id/casualText"
         android:layout_width="416dp"
         android:layout_height="52dp"
-        android:editable="false"
-        android:ems="10"
-        android:inputType="text"
+        android:clickable="false"
         android:text="    Enter distance (meters) or tap on the screen"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/casualDistance"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <Button
         android:id="@+id/createCasual"
@@ -40,18 +39,19 @@
         app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/casualDistance"
         android:layout_width="182dp"
         android:layout_height="64dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/roundcorner"
         android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/createCasual"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
