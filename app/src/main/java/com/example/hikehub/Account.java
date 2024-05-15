@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Account {
     private String email;
@@ -14,6 +15,7 @@ public class Account {
     private double weight;
     private double height;
     private ArrayList<Account> friendList;
+    private ArrayList<Account> friendRequests;
     private ArrayList<Chat> chatList;
     private Drawable profilePhoto;
     private int challengeScore;
@@ -28,11 +30,36 @@ public class Account {
         this.weight = weight;
         this.friendList = new ArrayList<>();
         this.chatList = new ArrayList<>();
+        this.friendRequests = new ArrayList<>();
         this.challengeScore = 0;
     }
 
-    public void addFriend(Account newFriend){
-        friendList.add(newFriend);
+    public Account(){}
+
+    public static Account castFromDB(Map<String, Object> data){
+
+        String email = (String) data.get("email");
+        String password = (String) data.get("password");
+        String name = (String) data.get("name");
+        boolean isMale = (boolean) data.get("male");
+        int age = (int) data.get("age");
+        double weight = (double) data.get("weight");
+        double height = (double) data.get("height");
+        ArrayList<Account> friendList = (ArrayList<Account>) data.get("friendList");
+        ArrayList<Account> friendRequests = (ArrayList<Account>) data.get("friendRequests");
+        ArrayList<Chat> chatList = (ArrayList<Chat>) data.get("chatList");
+        Drawable profilePhoto = (Drawable) data.get("profilePhoto");
+        int challengeScore = (int) data.get("challengeScore");
+
+        Account newAccount = new Account(email, password, name, isMale, age, height, weight);
+
+        newAccount.friendList = friendList;
+        newAccount.chatList = chatList;
+        newAccount.profilePhoto = profilePhoto;
+        newAccount.challengeScore = challengeScore;
+        newAccount.friendRequests = friendRequests;
+
+        return newAccount;
     }
 
     public void removeFriend(Account friend){
@@ -90,6 +117,8 @@ public class Account {
     public ArrayList<Account> getFriendList() {
         return friendList;
     }
+
+    public ArrayList<Account> getFriendRequests() { return friendRequests; }
 
     public ArrayList<Chat> getChatList() {
         return chatList;

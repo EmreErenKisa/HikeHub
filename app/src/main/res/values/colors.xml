@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFF80505</color>
+    <color name="green">#FF06E60F</color>
     <color name="hikehubbackground">#423F3D</color>
     <color name="signinbackground">#5E492B</color>
 

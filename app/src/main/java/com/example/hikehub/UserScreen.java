@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -24,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -32,17 +32,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Map;
 
 public class UserScreen extends SuperScreen {
-    public static ImageView hikehubLogo;
-    public static ImageButton profilePhoto;
-    public static TextView topRectangle;
-    public static ConstraintLayout.LayoutParams hhLogoParams;
-    public static ConstraintLayout.LayoutParams profilePhotoParams;
-    public static ConstraintLayout.LayoutParams topRectParams;
+    protected static String fireStoreID;
 
-    public static int height;
-    public static int width;
-
-    protected static Map<String,Object> acc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,45 +43,6 @@ public class UserScreen extends SuperScreen {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-
-        height = displayMetrics.heightPixels;
-        width = displayMetrics.widthPixels;
-
-        hikehubLogo = findViewById(R.id.hikehubLogo);
-        profilePhoto = findViewById(R.id.profilePhoto);
-        topRectangle = findViewById(R.id.topRectangle);
-
-        hhLogoParams = (ConstraintLayout.LayoutParams) hikehubLogo.getLayoutParams();
-        profilePhotoParams = (ConstraintLayout.LayoutParams) profilePhoto.getLayoutParams();
-        topRectParams = (ConstraintLayout.LayoutParams) topRectangle.getLayoutParams();
-
-        hhLogoParams.width = width * 7 / 12;
-        hikehubLogo.setLayoutParams(hhLogoParams);
-
-        hikehubLogo.post(new Runnable() {
-            @Override
-            public void run() {
-                int hikehubLogoHeight = hikehubLogo.getHeight();
-                profilePhotoParams.height = hikehubLogoHeight;
-                profilePhotoParams.width = hikehubLogoHeight;
-
-                topRectParams.height = hikehubLogoHeight * 130 / 100;
-                int margin = hikehubLogoHeight * 15 / 100;
-                hhLogoParams.topMargin = margin;
-                profilePhotoParams.topMargin = margin;
-                profilePhotoParams.rightMargin = margin;
-
-                hhLogoParams.leftMargin = (width - (hhLogoParams.width +
-                        profilePhotoParams.width + margin)) / 2;
-
-                profilePhoto.setLayoutParams(profilePhotoParams);
-                topRectangle.setLayoutParams(topRectParams);
-                hikehubLogo.setLayoutParams(hhLogoParams);
-            }
         });
     }
 
@@ -118,27 +70,23 @@ public class UserScreen extends SuperScreen {
         startActivity(i);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        db.collection("users").whereEqualTo("email", mAuth.getCurrentUser().getEmail())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("UserScreen", document.getId() + " => " + document.getData());
-                                acc = document.getData();
+    private static Map<String, Object> data;
+    public static Map<String, Object> getUserDataWithEmail(String email){
+        FirebaseFirestore.getInstance().collection("users").whereEqualTo("email",
+                        FirebaseAuth.getInstance().getCurrentUser().getEmail()).get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d("UserScreen", document.getId() + " => " + document.getData());
+                                    data = document.getData();
+                                }
+                            } else {
+                                Log.d("UserScreen", "Error getting documents: ", task.getException());
                             }
-                        } else {
-                            Log.d("UserScreen", "Error getting documents: ", task.getException());
                         }
-                    }
-                });
+                    });
+        return data;
     }
 }

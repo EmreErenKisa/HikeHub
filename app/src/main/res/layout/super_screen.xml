@@ -39,17 +39,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/hikehubLogo"
-            android:layout_width="274dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
+            android:layout_width="275dp"
+            android:layout_height="95dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/hikehub_logo"
+            android:onClick="backToMain"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/hikehub_logo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

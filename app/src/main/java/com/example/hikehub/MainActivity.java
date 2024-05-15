@@ -24,6 +24,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     EditText email;
@@ -37,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     String emailS, passwordS;
 
-    private FirebaseAuth mAuth;
+    static FirebaseAuth mAuth;
+
+    static FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +56,11 @@ public class MainActivity extends AppCompatActivity {
         forgotPass = findViewById(R.id.forgotPassB);
         FPemail = findViewById(R.id.emailTV2);
 
-        // Initialize Firebase Auth,,
-        mAuth = FirebaseAuth.getInstance();
-
         emailS = String.valueOf(email.getText());
         passwordS = String.valueOf(password.getText());
 
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void createAccount(View v){

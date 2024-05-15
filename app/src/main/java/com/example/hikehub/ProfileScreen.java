@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,13 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class ProfileScreen extends SuperScreen {
     ImageButton profilePhoto;
@@ -26,11 +34,13 @@ public class ProfileScreen extends SuperScreen {
     EditText height;
     EditText weight;
     EditText age;
-    EditText score;
+    TextView score;
     TextView gender;
     ImageButton pp;
+    TextView username;
+    private FirebaseAuth mAuth;
 
-    Button username;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +56,11 @@ public class ProfileScreen extends SuperScreen {
         score = findViewById(R.id.score);
         username = findViewById(R.id.username);
 
+        ConstraintLayout.LayoutParams ppParams = (ConstraintLayout.LayoutParams) profilePhoto.getLayoutParams();
+        ppParams.topMargin = SuperScreen.topRectParams.height;
+
+        profilePhoto.setLayoutParams(ppParams);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.profileScreen), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -53,7 +68,7 @@ public class ProfileScreen extends SuperScreen {
         });
     }
 
-    public void pickAvatar()
+    public void pickAvatar(View v)
     {
         imageChooser();
     }
@@ -91,18 +106,25 @@ public class ProfileScreen extends SuperScreen {
     }
     public void setHeight(View v)
     {
+        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         EditText text = findViewById(R.id.heightEdit);
-        String input = text.getText().toString();
+        acc.replace("height", String.valueOf(text.getText().toString()));
+        db.collection("users").document(UserScreen.fireStoreID).update(acc);
     }
     public void setWeight(View v)
     {
+        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         EditText text = findViewById(R.id.weightEdit);
         String input = text.getText().toString();
+        acc.replace("weight", String.valueOf(text.getText().toString()));
+        db.collection("users").document(UserScreen.fireStoreID).update(acc);
     }
     public void setAge(View v)
     {
+        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         EditText text = findViewById(R.id.ageEdit);
-        String input = text.getText().toString();
+        acc.replace("age", String.valueOf(text.getText().toString()));
+        db.collection("users").document(UserScreen.fireStoreID).update(acc);
     }
     public void deleteAccount(View v)
     {
@@ -112,8 +134,26 @@ public class ProfileScreen extends SuperScreen {
     {
         findViewById(R.id.confirmDeleteScreen).setVisibility(View.INVISIBLE);
     }
-    public void goBackToMain(View v){
-        Intent i = new Intent(this, UserScreen.class);
+
+    public void logout(View V){
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
+    public void confirmDeleteAccount(View v){
+        mAuth.getCurrentUser().delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("ProfileScreen", "User account deleted.");
+                        }
+                    }
+                });
+
+        db.collection("users").document(UserScreen.fireStoreID).delete();
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
@@ -121,20 +161,25 @@ public class ProfileScreen extends SuperScreen {
     public void onStart() {
         super.onStart();
 
-        username.setText((String) UserScreen.acc.get("name"));
-        height.setText(String.valueOf(UserScreen.acc.get("height")));
-        weight.setText(String.valueOf(UserScreen.acc.get("weight")));
-        age.setText(String.valueOf(UserScreen.acc.get("age")));
-        score.setText(String.valueOf(UserScreen.acc.get("challengeScore")));
+        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
-        if (UserScreen.acc.get("profilePhoto") == null) {
+        if (acc == null) {
+            Toast.makeText(this, FirebaseAuth.getInstance().getCurrentUser().getEmail(), Toast.LENGTH_LONG).show();
+        }
+        username.setText(String.valueOf(acc.get("name")));
+        height.setText(String.valueOf(acc.get("height")));
+        weight.setText(String.valueOf(acc.get("weight")));
+        age.setText(String.valueOf(acc.get("age")));
+        score.setText(String.valueOf(acc.get("challengeScore")));
+
+        if (acc.get("profilePhoto") == null) {
             profilePhoto.setForeground(ResourcesCompat.getDrawable(getResources() ,R.drawable.default_pp, getTheme()));
         }
         else {
-            profilePhoto.setForeground((Drawable) UserScreen.acc.get("profilePhoto"));
+            profilePhoto.setForeground((Drawable) acc.get("profilePhoto"));
         }
 
-        if ((Boolean) UserScreen.acc.get("male")) {
+        if ((Boolean) acc.get("male")) {
             gender.setText(R.string.genderMale);
         }
         else{

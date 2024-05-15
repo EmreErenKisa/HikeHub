@@ -45,14 +45,13 @@ public class CreateAccount extends AppCompatActivity {
     int ageNumber;
     double weightNumber;
     double heightNumber;
-
-    FirebaseAuth mAuth;
-
+    private boolean isInputValid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_acc);
+
 
         email = findViewById(R.id.emailTV);
         pass = findViewById(R.id.passtv);
@@ -63,10 +62,11 @@ public class CreateAccount extends AppCompatActivity {
         height = findViewById(R.id.heightTV);
         sexM = findViewById(R.id.maleRB);
         sexF = findViewById(R.id.femaleRB);
-        mAuth = FirebaseAuth.getInstance();
     }
 
     public void newAccount(View v){
+        isInputValid = true;
+
         if(sexF.isChecked()){
             isMale = false;
         }
@@ -95,70 +95,81 @@ public class CreateAccount extends AppCompatActivity {
         if(TextUtils.isEmpty(userS)){
             Toast.makeText(CreateAccount.this,"Enter username", Toast.LENGTH_SHORT).show();
             return;
-        }
+            }
         if (!confPassS.equals(passwordS)) {
             Toast.makeText(CreateAccount.this,"Passwords are not the same. Failed!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Account acc = new Account(emailS,passwordS,userS,isMale,ageNumber,heightNumber,weightNumber);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Checks if user already exists
-        db.collection("users")
+        MainActivity.db.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.getData().equals(acc)) {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(CreateAccount.this, "User already exists.",
+                                if (document.getData().get("email").equals(emailS)) {
+                                    Toast.makeText(CreateAccount.this, "An account associated with this email already exists.",
                                             Toast.LENGTH_SHORT).show();
+                                    isInputValid = false;
+                                    return;
+                                }
+                                else if (document.getData().get("name").equals(userS)){
+                                    Toast.makeText(CreateAccount.this, "This username has already been taken.",
+                                            Toast.LENGTH_SHORT).show();
+                                    isInputValid = false;
                                     return;
                                 }
                             }
                         } else {
                             Log.w("CreateAccount", "Error getting documents.", task.getException());
+                            isInputValid = false;
                         }
                     }
                 });
 
-        mAuth.createUserWithEmailAndPassword(emailS,passwordS)
-                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(CreateAccount.this, "Acount created.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(CreateAccount.this, "Please enter a valid email.",
-                                    Toast.LENGTH_SHORT).show();
-                            return;
+        if (isInputValid) {
+
+            MainActivity.mAuth.createUserWithEmailAndPassword(emailS, passwordS)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(CreateAccount.this, "Acount created.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(CreateAccount.this, "Please enter a valid email and password.",
+                                        Toast.LENGTH_SHORT).show();
+                                isInputValid = false;
+                                return;
+                            }
                         }
-                    }
-                });
+                    });
+        }
 
-        // Creates new user if one already DNE
-        db.collection("users")
-                .add(acc)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("CreateAccount", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("CreateAccount", "Error adding document", e);
-                    }
-                });
-
-        Intent i = new Intent(this, UserScreen.class);
-        startActivity(i);
+        if (isInputValid) {
+            // Creates new user if one already DNE
+            MainActivity.db.collection("users")
+                    .add(acc)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d("CreateAccount", "DocumentSnapshot added with ID: " + documentReference.getId());
+                            Intent i = new Intent(CreateAccount.this, MainActivity.class);
+                            startActivity(i);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("CreateAccount", "Error adding document", e);
+                            MainActivity.mAuth.getCurrentUser().delete();
+                        }
+                    });
+        }
     }
 
 }
