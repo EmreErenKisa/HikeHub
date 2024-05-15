@@ -39,6 +39,18 @@
         app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/leaveCasual"
+        android:layout_width="258dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="4dp"
+        android:text="Leave Route"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/casualDistance"
         android:layout_width="182dp"
