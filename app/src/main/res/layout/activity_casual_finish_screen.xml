@@ -69,6 +69,7 @@
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -102,6 +103,7 @@
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -130,11 +132,13 @@
         app:layout_constraintVertical_bias="0.64" />
 
     <TextView
+        android:id="@+id/caloriesView"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"
@@ -162,11 +166,13 @@
         app:layout_constraintVertical_bias="0.79" />
 
     <TextView
+        android:id="@+id/speedResult"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"

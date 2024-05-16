@@ -141,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        if (mAuth.getCurrentUser() != null) {
-            login();
-        }
+        //if (mAuth.getCurrentUser() != null) {
+          //  login();
+        //}
     }
 
     private void login(){

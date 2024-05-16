@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class CasualFinish extends SuperScreen {
     TextView textView;
-    TextView distance;
+    TextView distanceView;
     TextView timeView;
 
     @Override
@@ -24,10 +24,10 @@ public class CasualFinish extends SuperScreen {
 
         textView = findViewById(R.id.complete);
         timeView = findViewById(R.id.completionTime);
-        distance = findViewById(R.id.distanceWalkedView);
+        distanceView = findViewById(R.id.distanceWalkedView);
 
         textView.setVisibility(View.VISIBLE);
-        distance.setText( String.valueOf((int)(Casual_Start.distanceToDestination)) );
+        distanceView.setText( String.valueOf((int)(Casual_Start.distanceToDestination)) );
         timeView.setText( String.valueOf((int)(Casual_Start.time)) );
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.CasualFinishScreen), (v, insets) -> {
