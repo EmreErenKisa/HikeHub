@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     String emailS, passwordS;
 
     static FirebaseAuth mAuth;
-
     static FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +48,17 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
         email = findViewById(R.id.emailTV);
         password = findViewById(R.id.passtv);
         Signin = findViewById(R.id.signinButton);
         createAcc = findViewById(R.id.createNewAccount);
         forgotPass = findViewById(R.id.forgotPassB);
         FPemail = findViewById(R.id.emailTV2);
-
         emailS = String.valueOf(email.getText());
         passwordS = String.valueOf(password.getText());
-
-        db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
     }
 
     public void createAccount(View v){

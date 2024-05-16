@@ -24,6 +24,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class FriendsScreen extends SuperScreen {
 
@@ -73,21 +74,49 @@ public class FriendsScreen extends SuperScreen {
         Intent i = new Intent(this, ChatScreen.class);
         startActivity(i);
     }
-
     public void searchFriend(View v){
         String username = ((EditText) findViewById(R.id.searchFriendBox)).getText().toString();
 
-        Account account = Account.castFromDB(UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail()));
-        if (getUserWithName(username).getFriendList().contains(account)){
-            Toast.makeText(this, "You are already friends.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (getUserWithName(username).getFriendRequests().contains(account)){
-            Toast.makeText(this, "You have already sent a request.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        MainActivity.db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (username.equals(SuperScreen.user.getName())){
+                            Toast.makeText(FriendsScreen.this,
+                                    "You cannot add yourself to your friends.", Toast.LENGTH_SHORT).show();
+                        }
 
-        getUserWithName(username).getFriendRequests().add(account);
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("FriendsScreen", document.getId() + " => " + document.getData());
+                                Account friend = Account.castFromDB(document.getData());
+
+                                if (!username.equals((String) document.getData().get("name"))) continue;
+
+                                if (friend.getFriendList() != null){
+                                    if (friend.getFriendList().contains(SuperScreen.user)) {
+                                        Toast.makeText(FriendsScreen.this, "You are already friends.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else if (friend.getFriendRequests() != null){
+                                    if (friend.getFriendRequests().contains(SuperScreen.user)){
+                                        Toast.makeText(FriendsScreen.this, "You have already sent a request.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else {
+                                    friend.getFriendRequests().add(SuperScreen.user);
+                                    Log.d("FriendsScreen", "Executed");
+                                    MainActivity.db.collection("users")
+                                            .document(document.getId()).update((Map<String, Object>) document.getData()
+                                            .replace("friendRequests", friend.getFriendRequests()));
+                                }
+                            }
+                        } else {
+                            Log.d("FriendsScreen", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     @Override
@@ -100,9 +129,8 @@ public class FriendsScreen extends SuperScreen {
     }
 
     private void updateFriendViews(){
-        Account account = Account.castFromDB(UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail()));
-        ArrayList<Account> friends = account.getFriendList();
-        ArrayList<Account> friendRequests = account.getFriendRequests();
+        ArrayList<Account> friends = SuperScreen.user.getFriendList();
+        ArrayList<Account> friendRequests = SuperScreen.user.getFriendRequests();
 
         if (friendRequests == null || friendRequests.size() == 0){
                 findViewById(R.id.friendRequests).setVisibility(View.GONE);
@@ -127,26 +155,13 @@ public class FriendsScreen extends SuperScreen {
         friendRequestsList.setAdapter(new FriendsAdapter(getApplicationContext(), friendRequests));
     }
 
-    private Account friend;
-    private Account getUserWithName(String name){
-        MainActivity.db.collection("users").whereEqualTo("name", name)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("UserScreen", document.getId() + " => " + document.getData());
-                                friend = Account.castFromDB(document.getData());
-                            }
-                        } else {
-                            Log.d("UserScreen", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-        if (friend == null) {
-            return new Account();
-        }
-        return friend;
+    public void dislayFriendProfile(Account account){
+        Intent i = new Intent(this, FriendProfile.class);
+        startActivity(i);
+    }
+
+    public void goToChatScreen(Account account){
+        Intent i = new Intent(this, ChatScreen.class);
+        startActivity(i);
     }
 }

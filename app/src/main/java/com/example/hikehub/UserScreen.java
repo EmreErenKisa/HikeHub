@@ -32,13 +32,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Map;
 
 public class UserScreen extends SuperScreen {
-    protected static String fireStoreID;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_screen);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.UserScreen), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -68,25 +67,5 @@ public class UserScreen extends SuperScreen {
     public void challange(View v){
         Intent i = new Intent(this, ChallangeStart.class);
         startActivity(i);
-    }
-
-    private static Map<String, Object> data;
-    public static Map<String, Object> getUserDataWithEmail(String email){
-        FirebaseFirestore.getInstance().collection("users").whereEqualTo("email",
-                        email).get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d("UserScreen", document.getId() + " => " + document.getData());
-                                    data = document.getData();
-                                }
-                            } else {
-                                Log.d("UserScreen", "Error getting documents: ", task.getException());
-                            }
-                        }
-                    });
-        return data;
     }
 }

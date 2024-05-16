@@ -115,13 +115,11 @@ public class CreateAccount extends AppCompatActivity {
                                     Toast.makeText(CreateAccount.this, "An account associated with this email already exists.",
                                             Toast.LENGTH_SHORT).show();
                                     isInputValid = false;
-                                    return;
                                 }
                                 else if (document.getData().get("name").equals(userS)){
                                     Toast.makeText(CreateAccount.this, "This username has already been taken.",
                                             Toast.LENGTH_SHORT).show();
                                     isInputValid = false;
-                                    return;
                                 }
                             }
                         } else {
@@ -132,7 +130,6 @@ public class CreateAccount extends AppCompatActivity {
                 });
 
         if (isInputValid) {
-
             MainActivity.mAuth.createUserWithEmailAndPassword(emailS, passwordS)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -144,7 +141,6 @@ public class CreateAccount extends AppCompatActivity {
                                 Toast.makeText(CreateAccount.this, "Please enter a valid email and password.",
                                         Toast.LENGTH_SHORT).show();
                                 isInputValid = false;
-                                return;
                             }
                         }
                     });

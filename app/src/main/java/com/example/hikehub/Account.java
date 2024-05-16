@@ -53,6 +53,16 @@ public class Account {
 
         Account newAccount = new Account(email, password, name, isMale, age, height, weight);
 
+        if (friendList == null) {
+            friendList = new ArrayList<>();
+        }
+        if (friendRequests == null) {
+            friendRequests = new ArrayList<>();
+        }
+        if (chatList == null) {
+            chatList = new ArrayList<>();
+        }
+
         newAccount.friendList = friendList;
         newAccount.chatList = chatList;
         newAccount.profilePhoto = profilePhoto;

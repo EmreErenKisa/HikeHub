@@ -2,7 +2,9 @@ package com.example.hikehub;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -31,11 +33,39 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsViewHolder> {
     public void onBindViewHolder(@NonNull FriendsViewHolder holder, int position) {
         holder.friendNum.setText(position + 1);
         holder.friendPP.setBackground(friends.get(position).getProfilePhoto());
-        holder.friendName.setText(friends.get(position).getName());
-        holder.friendName.setBackground(ResourcesCompat
-                .getDrawable(context.getResources() ,R.drawable.chat_icon, context.getTheme()));
-    }
+        holder.friendPP.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                friends.get(position + 1);
 
+                Intent i = new Intent(context,FriendProfile.class);
+                context.startActivity(i);
+            }
+        });
+
+        holder.friendName.setText(friends.get(position).getName());
+        holder.friendName.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                friends.get(position + 1);
+
+                Intent i = new Intent(context,FriendProfile.class);
+                context.startActivity(i);
+            }
+        });
+
+        holder.chatIcon.setBackground(ResourcesCompat
+                .getDrawable(context.getResources() ,R.drawable.chat_icon, context.getTheme()));
+        holder.chatIcon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                friends.get(position + 1);
+
+                Intent i = new Intent(context,ChatScreen.class);
+                context.startActivity(i);
+            }
+        });
+    }
     @Override
     public int getItemCount() {
         return friends.size();

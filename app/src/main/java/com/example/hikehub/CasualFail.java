@@ -32,7 +32,7 @@ public class CasualFail extends SuperScreen {
         calorieView = findViewById(R.id.caloriesView);
         speedView = findViewById(R.id.speedResult);
 
-        Account account = Account.castFromDB(UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+        Account account = UserScreen.user;
 
         textView.setVisibility(View.VISIBLE);
         distanceView.setText( String.valueOf((int)(Casual_Start.distanceToDestination) + "m") );

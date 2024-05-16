@@ -4,19 +4,26 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.Map;
@@ -32,12 +39,35 @@ public class SuperScreen extends AppCompatActivity {
 
     public static int height;
     public static int width;
-
+    protected static Account user;
+    protected static Map<String, Object> data;
+    protected static String fireStoreID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.super_screen);
+        MainActivity.db = FirebaseFirestore.getInstance();
+        MainActivity.mAuth = FirebaseAuth.getInstance();
+
+        FirebaseFirestore.getInstance().collection("users").whereEqualTo("email",
+                        MainActivity.mAuth.getCurrentUser().getEmail()).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("UserScreen", document.getId() + " => " + document.getData());
+                                data = document.getData();
+                                user =  Account.castFromDB(data);
+                            }
+                        } else {
+                            Log.d("UserScreen", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        fireStoreID = MainActivity.db.collection("users").getId();
 
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -89,13 +119,12 @@ public class SuperScreen extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
-        if (acc == null) return;
-        if (acc.get("profilePhoto") == null) return;
+        if (data == null) return;
+        if (data.get("profilePhoto") == null) return;
 
         ImageButton pp = (ImageButton) findViewById(R.id.profilePhoto);
-        pp.setForeground((Drawable) acc.get("profilePhoto"));
+        pp.setForeground((Drawable) data.get("profilePhoto"));
     }
 
     public void profileScreen(View v){

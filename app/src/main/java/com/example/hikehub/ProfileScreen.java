@@ -106,25 +106,25 @@ public class ProfileScreen extends SuperScreen {
     }
     public void setHeight(View v)
     {
-        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        Map<String, Object> acc = SuperScreen.data;
         EditText text = findViewById(R.id.heightEdit);
         acc.replace("height", String.valueOf(text.getText().toString()));
-        db.collection("users").document(UserScreen.fireStoreID).update(acc);
+        db.collection("users").document(SuperScreen.fireStoreID).update(acc);
     }
     public void setWeight(View v)
     {
-        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        Map<String, Object> acc = SuperScreen.data;
         EditText text = findViewById(R.id.weightEdit);
         String input = text.getText().toString();
         acc.replace("weight", String.valueOf(text.getText().toString()));
-        db.collection("users").document(UserScreen.fireStoreID).update(acc);
+        db.collection("users").document(SuperScreen.fireStoreID).update(acc);
     }
     public void setAge(View v)
     {
-        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        Map<String, Object> acc = SuperScreen.data;
         EditText text = findViewById(R.id.ageEdit);
         acc.replace("age", String.valueOf(text.getText().toString()));
-        db.collection("users").document(UserScreen.fireStoreID).update(acc);
+        db.collection("users").document(SuperScreen.fireStoreID).update(acc);
     }
     public void deleteAccount(View v)
     {
@@ -152,7 +152,7 @@ public class ProfileScreen extends SuperScreen {
                     }
                 });
 
-        db.collection("users").document(UserScreen.fireStoreID).delete();
+        db.collection("users").document(SuperScreen.fireStoreID).delete();
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
@@ -161,7 +161,7 @@ public class ProfileScreen extends SuperScreen {
     public void onStart() {
         super.onStart();
 
-        Map<String, Object> acc = UserScreen.getUserDataWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        Map<String, Object> acc = SuperScreen.data;
 
         if (acc == null) {
             Toast.makeText(this, FirebaseAuth.getInstance().getCurrentUser().getEmail(), Toast.LENGTH_LONG).show();
