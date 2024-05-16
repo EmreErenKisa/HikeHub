@@ -13,14 +13,22 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class CasualFinish extends SuperScreen {
     TextView textView;
+    TextView distance;
+    TextView timeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_casual_finish_screen);
+
         textView = findViewById(R.id.complete);
+        timeView = findViewById(R.id.completionTime);
+        distance = findViewById(R.id.distanceWalkedView);
+
         textView.setVisibility(View.VISIBLE);
+        distance.setText( String.valueOf((int)(Casual_Start.distanceToDestination)) );
+        timeView.setText( String.valueOf((int)(Casual_Start.time)) );
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.CasualFinishScreen), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

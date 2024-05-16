@@ -64,11 +64,12 @@
         app:layout_constraintVertical_bias="0.34" />
 
     <TextView
+        android:id="@+id/distanceWalkedView"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"
@@ -96,11 +97,12 @@
         app:layout_constraintVertical_bias="0.49" />
 
     <TextView
+        android:id="@+id/completionTime"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"

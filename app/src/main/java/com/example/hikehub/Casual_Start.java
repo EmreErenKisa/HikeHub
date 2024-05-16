@@ -49,13 +49,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
+import java.util.Timer;
 
 public class Casual_Start extends SuperScreen implements OnMapReadyCallback, TaskLoadedCallback {
 
     private final int FINE_PERMISSION_CODE = 1;
-    private  static int timesMapClicked = 0;
+    private static int timesMapClicked = 0;
+    public static double distanceToDestination;
+    public static long time;
     private GoogleMap gMap;
     boolean routeStarted;
+    long start;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     Button startRoute;
@@ -87,6 +91,10 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
             } else {
                 if (!enterDistance.getText().toString().trim().equals("")) {
                     destination = createDistance(Double.parseDouble(enterDistance.getText().toString().trim()));
+                    distanceToDestination = Double.parseDouble(enterDistance.getText().toString().trim());
+                }else {
+                    // Debug code DONT FORGET TO DELETE
+                    distanceToDestination = 154;
                 }
                 routeStarted = true;
                 leaveRoute.setVisibility(VISIBLE);
@@ -96,18 +104,24 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
                 enterDistance.setVisibility(INVISIBLE);
                 textView1.setVisibility(INVISIBLE);
                 createRoute();
+
+                start = System.currentTimeMillis();
             }
         });
     }
 
     public void finishEndScreen(View v) {
+        long end = System.currentTimeMillis();
+        time = end - start;
         Intent i = new Intent(this, CasualFinish.class);
         startActivity(i);
     }
 
     public void failEndScreen(View v) {
-            Intent i = new Intent(this, CasualFail.class);
-            startActivity(i);
+        long end = System.currentTimeMillis();
+        time = end - start;
+        Intent i = new Intent(this, CasualFail.class);
+        startActivity(i);
     }
 
     private LatLng createDistance(double distanceInMeters) {
@@ -179,6 +193,8 @@ public class Casual_Start extends SuperScreen implements OnMapReadyCallback, Tas
 
         if (destination != null) {
             if (location.longitude == destination.longitude && location.latitude == destination.latitude) {
+                long end = System.currentTimeMillis();
+                time = end - start;
                 Intent i = new Intent(this, CasualFinish.class);
                 startActivity(i);
             }
