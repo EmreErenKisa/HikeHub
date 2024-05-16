@@ -42,14 +42,14 @@ public class Account {
         String password = (String) data.get("password");
         String name = (String) data.get("name");
         boolean isMale = (boolean) data.get("male");
-        int age = (int) data.get("age");
+        int age = Math.toIntExact((Long) data.get("age"));
         double weight = (double) data.get("weight");
         double height = (double) data.get("height");
         ArrayList<Account> friendList = (ArrayList<Account>) data.get("friendList");
         ArrayList<Account> friendRequests = (ArrayList<Account>) data.get("friendRequests");
         ArrayList<Chat> chatList = (ArrayList<Chat>) data.get("chatList");
         Drawable profilePhoto = (Drawable) data.get("profilePhoto");
-        int challengeScore = (int) data.get("challengeScore");
+        int challengeScore =  Math.toIntExact((Long) data.get("challengeScore"));
 
         Account newAccount = new Account(email, password, name, isMale, age, height, weight);
 

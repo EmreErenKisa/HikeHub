@@ -29,26 +29,12 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="404dp"
-        android:layout_height="700dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="575dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/addFriendOK"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <TextView
-            android:id="@+id/friendsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="monospace"
-            android:text="Friends"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="48sp"
-            android:textStyle="bold" />
+        app:layout_constraintTop_toBottomOf="@+id/friendsTitle">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/friendsList"
@@ -196,5 +182,21 @@
             app:layout_constraintStart_toEndOf="@id/friendNick" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/friendsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:fontFamily="monospace"
+        android:text="Friends"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

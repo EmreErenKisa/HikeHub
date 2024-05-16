@@ -44,13 +44,13 @@ public class FriendsScreen extends SuperScreen {
 
         TextView searchUsername = findViewById(R.id.searchUsername);
 
-        LinearLayout.LayoutParams linearLayoutParams =
-                (LinearLayout.LayoutParams) findViewById(R.id.linearLayout).getLayoutParams();
+        ConstraintLayout.LayoutParams friendsTitleParams =
+                (ConstraintLayout.LayoutParams) findViewById(R.id.friendsTitle).getLayoutParams();
         ConstraintLayout.LayoutParams searchUsernameParams =
                 (ConstraintLayout.LayoutParams) searchUsername.getLayoutParams();
 
-        linearLayoutParams.topMargin = SuperScreen.topRectParams.height;
-        findViewById(R.id.linearLayout).setLayoutParams(linearLayoutParams);
+        friendsTitleParams.topMargin = SuperScreen.topRectParams.height;
+        findViewById(R.id.friendsTitle).setLayoutParams(friendsTitleParams);
 
         searchUsernameParams.width = UserScreen.width / 2;
         searchUsername.setLayoutParams(searchUsernameParams);

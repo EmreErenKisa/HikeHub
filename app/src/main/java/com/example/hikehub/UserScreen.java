@@ -73,7 +73,7 @@ public class UserScreen extends SuperScreen {
     private static Map<String, Object> data;
     public static Map<String, Object> getUserDataWithEmail(String email){
         FirebaseFirestore.getInstance().collection("users").whereEqualTo("email",
-                        FirebaseAuth.getInstance().getCurrentUser().getEmail()).get()
+                        email).get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
