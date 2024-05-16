@@ -12,8 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-public class ChallengeFinish extends SuperScreen {
+public class ChallengeFail extends SuperScreen{
     TextView textView;
     TextView distanceView;
     TextView timeView;
@@ -26,7 +25,7 @@ public class ChallengeFinish extends SuperScreen {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_challenge_finish);
 
-        textView = findViewById(R.id.Ccomplete);
+        textView = findViewById(R.id.Cfail);
         timeView = findViewById(R.id.CcompletionTime);
         distanceView = findViewById(R.id.CdistanceWalkedView);
         calorieView = findViewById(R.id.CcaloriesView);

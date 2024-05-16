@@ -12,12 +12,32 @@
         layout="@layout/super_screen" />
 
     <TextView
+        android:id="@+id/Cfail"
+        android:visibility="invisible"
         android:layout_width="350dp"
         android:layout_height="159dp"
         android:clickable="false"
         android:text="ROUTE INCOMPLETE!"
         android:textAlignment="center"
         android:textColor="#C80000"
+        android:textSize="43dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <TextView
+        android:id="@+id/Ccomplete"
+        android:visibility="invisible"
+        android:layout_width="350dp"
+        android:layout_height="159dp"
+        android:clickable="false"
+        android:text="ROUTE COMPLETED!"
+        android:textAlignment="center"
+        android:textColor="#00FF00"
         android:textSize="43dp"
         android:textStyle="bold"
 
@@ -48,7 +68,8 @@
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"
@@ -76,11 +97,13 @@
         app:layout_constraintVertical_bias="0.44" />
 
     <TextView
+        android:id="@+id/CdistanceWalkedView"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"
@@ -108,11 +131,13 @@
         app:layout_constraintVertical_bias="0.57" />
 
     <TextView
+        android:id="@+id/CcompletionTime"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"
@@ -140,11 +165,13 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
+        android:id="@+id/CcaloriesView"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"
@@ -172,11 +199,13 @@
         app:layout_constraintVertical_bias="0.83" />
 
     <TextView
+        android:id="@+id/CspeedResult"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:clickable="false"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:background="#DADADA"
