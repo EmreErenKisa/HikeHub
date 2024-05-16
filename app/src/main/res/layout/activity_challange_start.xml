@@ -12,94 +12,6 @@
         android:id="@+id/include2"
         layout="@layout/super_screen" />
 
-    <EditText
-        android:id="@+id/editTextText6"
-        android:layout_width="294dp"
-        android:layout_height="46dp"
-        android:background="@color/hikehubbackground"
-        android:backgroundTint="@color/hikehubbackground"
-        android:ems="10"
-        android:inputType="text"
-        android:text="    Enter distence (meters)"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FDFCFC"
-        android:textSize="24sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/challangeDistance"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/challangeDistance"
-        android:layout_width="190dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/roundcorner"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/challangeOptions"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/challangeOptions"
-        android:layout_width="158dp"
-        android:layout_height="182dp"
-        android:layout_marginBottom="30dp"
-
-        android:background="@drawable/roundcorner"
-        android:backgroundTint="#FFFFFF"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/createRoute"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible">
-
-        <RadioButton
-            android:id="@+id/Easy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Easy"
-            android:textStyle="bold"
-            android:visibility="visible" />
-
-        <RadioButton
-            android:id="@+id/Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Medium"
-            android:textStyle="bold"
-            android:visibility="visible" />
-
-        <RadioButton
-            android:id="@+id/Hard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hard"
-            android:textStyle="bold"
-            android:visibility="visible" />
-
-        <RadioButton
-            android:id="@+id/Bolt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bolt"
-            android:textStyle="bold"
-            android:visibility="visible" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/createRoute"
-        android:layout_width="258dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/roundcorner"
-        android:backgroundTint="#3F51B5"
-        android:text="CREATE ROUTE"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView5"
         android:layout_width="match_parent"
@@ -107,7 +19,102 @@
         android:layout_marginTop="100dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextText6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="413dp"
+        android:layout_height="231dp"
+        android:translationY="200dp"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="300dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextText6"
+                android:layout_width="294dp"
+                android:layout_height="46dp"
+                android:background="@color/hikehubbackground"
+                android:backgroundTint="@color/hikehubbackground"
+                android:ems="10"
+                android:inputType="text"
+                android:text="    Enter distence (meters)"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FDFCFC"
+                android:textSize="24sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/challangeDistance"
+                android:layout_width="190dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/roundcorner"
+                android:backgroundTint="#FFFFFF" />
+
+            <RadioGroup
+                android:id="@+id/challangeOptions"
+                android:layout_width="158dp"
+                android:layout_height="182dp"
+                android:layout_marginBottom="30dp"
+
+                android:background="@drawable/roundcorner"
+                android:backgroundTint="#FFFFFF"
+                android:visibility="visible"
+                tools:visibility="visible">
+
+                <RadioButton
+                    android:id="@+id/Easy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Easy"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Medium"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/Hard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hard"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/Bolt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bolt"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/createRoute"
+                android:layout_width="258dp"
+                android:layout_height="61dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/roundcorner"
+                android:backgroundTint="#3F51B5"
+                android:text="CREATE ROUTE"
+                android:visibility="visible" />
+        </LinearLayout>
+    </ScrollView>
+
+</ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
