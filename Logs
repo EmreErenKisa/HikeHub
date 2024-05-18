@@ -1,0 +1,24 @@
+Emre Eren Kısa:
+-Main screen and end screens UI implemented
+-Main Screen bugfix
+-Google Maps implemented
+-Bugfix
+-End screens code implemented
+
+Doruk Arca:
+-Sign in and create account UI implemented
+-Linked account creation to firebase
+-Implemented forgot password
+-Created app logo
+-Bugfix
+
+Muhammed Hüseyin Aydın:
+-Created ChatScreen and FriendScreen
+-Added Utility classes Account, Chat, Message
+-Connected Firebase with ProfileScreen
+
+Ozan Süha Atamer:
+-Profile and delete account UI implemented
+
+Ozan Aykut:
+-Start screens UI implemented
